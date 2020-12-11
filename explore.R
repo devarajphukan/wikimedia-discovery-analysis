@@ -12,16 +12,27 @@ events_log_ts_fixed = events_log %>%
 
 # Which results do people tend to try first? How does it change day-to-day?
 # Create 2 plots, 1 for overall and other faceted by day
-events_log_ts_fixed %>% 
+
+result_position_df = events_log_ts_fixed %>% 
   mutate(date = as.Date(timestamp)) %>% 
-  select(result_position, date) %>% 
-  na.omit() %>% 
-  # group_by(date, result_position) %>%
+  select(result_position, date) %>% na.omit()
+
+summarize_result_position_df <- function(grouped_df){
+  grouped_df %>% 
+    summarize(count = n()) %>% 
+    mutate(percentage_count = 100*(count/sum(count))) %>% 
+    top_n(percentage_count, n = 10) %>% 
+    ungroup() %>% as.data.frame()
+}
+
+result_position_overall = result_position_df %>% 
   group_by(result_position) %>%
-  summarize(count = n()) %>% 
-  mutate(percentage_count = 100*(count/sum(count))) %>% 
-  top_n(percentage_count, n = 10) %>% 
-  ungroup() %>% as.data.frame()
+  summarize_result_position_df()
+  
+
+result_position_by_date = result_position_df %>% 
+  group_by(date, result_position) %>%
+  summarize_result_position_df()
 
 
 events_session_group = events_log_ts_fixed %>% 
