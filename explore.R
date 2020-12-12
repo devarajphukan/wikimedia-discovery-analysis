@@ -3,9 +3,7 @@ library(ggplot2)
 library(reshape2)
 library(readr)
 
-events_log = read_csv("events_log.csv")
-
-events_log_ts_fixed = events_log %>% 
+events_log_ts_fixed = read_csv("events_log.csv") %>% 
   mutate(timestamp =  as.POSIXct(as.character(timestamp), 
                                  format = "%Y%m%d%H%M%S", 
                                  origin = as.Date("1970-01-01"))) %>% 
@@ -149,9 +147,7 @@ correlation_matrix = events_session_group %>%
   filter(!is.na(session_time) & !is.na(minimum_n_results)) %>% 
   select(session_time, minimum_n_results, num_serp_visits, 
          num_results_clicked, num_unique_pages_visited) %>% 
-  cor() %>% round(4)
-
-melted_correlation_matrix = melt(correlation_matrix)
+  cor() %>% round(4) %>% melt(correlation_matrix)
 
 ggplot(data = melted_correlation_matrix, aes(x=Var1, y=Var2, fill=value)) + 
   geom_tile() +
