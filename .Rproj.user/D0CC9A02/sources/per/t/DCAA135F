@@ -1,0 +1,32 @@
+{
+    "id": "DCAA135F",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1607628314863.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "expression": "events_session_group",
+        "caption": "events_session_group",
+        "totalObservations": "68028",
+        "displayedObservations": "68028",
+        "variables": "9",
+        "cacheKey": "91440AA5",
+        "object": "events_session_group",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=events_session_group&cache_key=91440AA5&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 4645040803167600640,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1607628314863,
+    "read_only": false,
+    "read_only_alternatives": []
+}
